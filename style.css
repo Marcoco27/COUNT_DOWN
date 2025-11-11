@@ -1,0 +1,110 @@
+:root {
+    --bg-color: #FAFAFA;
+    --text-primary: #0A0A0A;
+    --text-secondary: #666666;
+    --accent: #0A0A0A;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Mono', 'Inter', 'Segoe UI', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+}
+
+.countdown {
+    display: flex;
+    gap: clamp(2rem, 5vw, 4rem);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.time-unit {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: clamp(80px, 15vw, 140px);
+}
+
+.number {
+    font-size: clamp(3.5rem, 12vw, 7rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    transition: var(--transition);
+    will-change: opacity;
+}
+
+.number.updating {
+    opacity: 0.4;
+}
+
+.label {
+    font-size: clamp(0.75rem, 2vw, 0.95rem);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.target-date {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--text-secondary);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+/* Animation subtile au changement */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+/* Mode sombre (optionnel, détecté automatiquement) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #0A0A0A;
+        --text-primary: #FAFAFA;
+        --text-secondary: #999999;
+        --accent: #FAFAFA;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .countdown {
+        gap: 1.5rem;
+    }
+    
+    .time-unit {
+        min-width: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .countdown {
+        gap: 1rem;
+    }
+}
