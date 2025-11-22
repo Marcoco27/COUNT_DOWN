@@ -1,79 +1,44 @@
-/* Reset de base */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+// Date cible : 15 Juillet 2027
+const targetDate = new Date('July 15, 2027 00:00:00').getTime();
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    // Si le compte à rebours est terminé
+    if (distance < 0) {
+        document.getElementById('countdown').classList.add('hidden');
+        document.getElementById('message').classList.remove('hidden');
+        return;
+    }
+
+    // Calculs du temps
+    // Note: Le calcul précis des "Mois" est complexe car les mois ont des durées variables.
+    // Ici, nous utilisons une approximation standard (1 mois = 30.44 jours) pour l'affichage,
+    // ou nous calculons le reste mathématiquement.
+
+    const _second = 1000;
+    const _minute = _second * 60;
+    const _hour = _minute * 60;
+    const _day = _hour * 24;
+    const _month = _day * 30.44; // Moyenne approximative
+
+    const months = Math.floor(distance / _month);
+    const days = Math.floor((distance % _month) / _day);
+    const hours = Math.floor((distance % _day) / _hour);
+    const minutes = Math.floor((distance % _hour) / _minute);
+    const seconds = Math.floor((distance % _minute) / _second);
+
+    // Mise à jour du DOM (HTML)
+    document.getElementById('months').innerText = months;
+    document.getElementById('days').innerText = days;
+    document.getElementById('hours').innerText = hours;
+    document.getElementById('minutes').innerText = minutes;
+    document.getElementById('seconds').innerText = seconds;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    text-align: center;
-}
+// Mettre à jour chaque seconde
+setInterval(updateCountdown, 1000);
 
-.container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    max-width: 90%;
-    width: 800px;
-}
-
-h1 {
-    margin-bottom: 0.5rem;
-    font-size: 2.5rem;
-}
-
-.subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.8;
-}
-
-.countdown-grid {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.time-box {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 1rem;
-    border-radius: 10px;
-    min-width: 100px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.time-box span:first-child {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #ffd700; /* Couleur or pour les chiffres */
-}
-
-.label {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    margin-top: 5px;
-}
-
-.hidden {
-    display: none;
-}
-
-/* Adaptation Mobile */
-@media (max-width: 600px) {
-    h1 { font-size: 1.8rem; }
-    .time-box { min-width: 70px; padding: 0.5rem; }
-    .time-box span:first-child { font-size: 1.5rem; }
-    .label { font-size: 0.7rem; }
-}
+// Lancer une première fois immédiatement pour éviter le délai d'une seconde à l'affichage
+updateCountdown();
