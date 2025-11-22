@@ -1,110 +1,79 @@
-:root {
-    --bg-color: #FAFAFA;
-    --text-primary: #0A0A0A;
-    --text-secondary: #666666;
-    --accent: #0A0A0A;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
+/* Reset de base */
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Mono', 'Inter', 'Segoe UI', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-primary);
-    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: white;
     display: flex;
-    align-items: center;
     justify-content: center;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow: hidden;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
 }
 
 .container {
-    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
     padding: 2rem;
-    width: 100%;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    max-width: 90%;
+    width: 800px;
 }
 
-.countdown {
+h1 {
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.countdown-grid {
     display: flex;
-    gap: clamp(2rem, 5vw, 4rem);
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 3rem;
+    gap: 15px;
 }
 
-.time-unit {
+.time-box {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 10px;
+    min-width: 100px;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    min-width: clamp(80px, 15vw, 140px);
+    align-items: center;
 }
 
-.number {
-    font-size: clamp(3.5rem, 12vw, 7rem);
-    font-weight: 300;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    font-variant-numeric: tabular-nums;
-    transition: var(--transition);
-    will-change: opacity;
-}
-
-.number.updating {
-    opacity: 0.4;
+.time-box span:first-child {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffd700; /* Couleur or pour les chiffres */
 }
 
 .label {
-    font-size: clamp(0.75rem, 2vw, 0.95rem);
+    font-size: 0.9rem;
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--text-secondary);
-    font-weight: 400;
+    margin-top: 5px;
 }
 
-.target-date {
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
-    color: var(--text-secondary);
-    font-weight: 300;
-    letter-spacing: 0.05em;
+.hidden {
+    display: none;
 }
 
-/* Animation subtile au changement */
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
-}
-
-/* Mode sombre (optionnel, détecté automatiquement) */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-color: #0A0A0A;
-        --text-primary: #FAFAFA;
-        --text-secondary: #999999;
-        --accent: #FAFAFA;
-    }
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .countdown {
-        gap: 1.5rem;
-    }
-    
-    .time-unit {
-        min-width: 70px;
-    }
-}
-
-@media (max-width: 480px) {
-    .countdown {
-        gap: 1rem;
-    }
+/* Adaptation Mobile */
+@media (max-width: 600px) {
+    h1 { font-size: 1.8rem; }
+    .time-box { min-width: 70px; padding: 0.5rem; }
+    .time-box span:first-child { font-size: 1.5rem; }
+    .label { font-size: 0.7rem; }
 }
