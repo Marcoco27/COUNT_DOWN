@@ -3,32 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compte à rebours - 15 juillet 2027</title>
-    <meta name="description" content="Compte à rebours jusqu'au 15 juillet 2027">
-    <link rel="stylesheet" href="style.css">
+    <title>Compte à Rebours Amélioré</title>
+    
+    <!-- Ajout de la police Google Fonts "Poppins" -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- Style Général et Arrière-plan --- */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            /* Utilisation de la nouvelle police */
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* NOUVEAU: Arrière-plan en dégradé subtil */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+        }
+
+        /* --- Conteneur Principal --- */
+        .countdown-container {
+            padding: 20px;
+        }
+
+        h1 {
+            font-weight: 300;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            /* NOUVEAU: Ombre légère sur le texte pour une meilleure lisibilité */
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Minuteur --- */
+        #timer {
+            display: flex;
+            justify-content: center;
+            gap: 25px; /* Espace légèrement augmenté */
+            flex-wrap: wrap;
+        }
+
+        /* NOUVEAU: Style des "cartes" pour chaque unité de temps */
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 130px;
+            height: 130px;
+            background: rgba(255, 255, 255, 0.1); /* Fond semi-transparent */
+            border-radius: 15px; /* Coins arrondis */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Ombre portée pour la profondeur */
+            backdrop-filter: blur(5px); /* Effet de verre dépoli (compatibilité variable) */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease; /* Animation au survol */
+        }
+
+        .time-unit:hover {
+            transform: translateY(-5px); /* Léger mouvement vers le haut au survol */
+        }
+
+        /* --- Chiffres et Libellés --- */
+        .time-unit span:first-child {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .time-unit span:last-child {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 5px;
+        }
+
+        /* NOUVEAU: Classe pour l'animation de changement de chiffre */
+        .animate-pop {
+            animation: pop 0.5s ease-out;
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            70% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* --- Message de fin --- */
+        #end-message {
+            font-size: 3rem;
+            font-weight: 500;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Responsive pour les écrans mobiles --- */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 40px;
+            }
+
+            #timer {
+                gap: 15px;
+            }
+
+            .time-unit {
+                width: 100px;
+                height: 100px;
+                border-radius: 10px;
+            }
+
+            .time-unit span:first-child {
+                font-size: 2.5rem;
+            }
+
+            .time-unit span:last-child {
+                font-size: 0.7rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #timer {
+                /* Sur très petits écrans, on peut afficher 2x2 */
+                max-width: 240px; /* 100px * 2 + 15px * 2 */
+                margin: 0 auto;
+            }
+        }
+    </style>
 </head>
 <body>
-    <main class="container">
-        <div class="countdown" role="timer" aria-live="polite">
+
+    <div class="countdown-container">
+        <h1>Compte à rebours jusqu'au 15 juillet 2027</h1>
+        <div id="timer">
             <div class="time-unit">
-                <span class="number" id="days">000</span>
-                <span class="label">jours</span>
+                <span id="months">0</span>
+                <span>Mois</span>
             </div>
             <div class="time-unit">
-                <span class="number" id="hours">00</span>
-                <span class="label">heures</span>
+                <span id="days">0</span>
+                <span>Jours</span>
             </div>
             <div class="time-unit">
-                <span class="number" id="minutes">00</span>
-                <span class="label">minutes</span>
+                <span id="hours">0</span>
+                <span>Heures</span>
             </div>
             <div class="time-unit">
-                <span class="number" id="seconds">00</span>
-                <span class="label">secondes</span>
+                <span id="minutes">0</span>
+                <span>Minutes</span>
+            </div>
+            <div class="time-unit">
+                <span id="seconds">0</span>
+                <span>Secondes</span>
             </div>
         </div>
-        <p class="target-date">d'ici le 15 juillet 2027</p>
-    </main>
-    <script src="script.js"></script>
+        <div id="end-message" style="display: none;">L'événement est arrivé !</div>
+    </div>
+
+    <script>
+        const targetDate = new Date('2027-07-15T00:00:00');
+
+        const monthsEl = document.getElementById('months');
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        const timerEl = document.getElementById('timer');
+        const endMessageEl = document.getElementById('end-message');
+        
+        // Stocke la valeur précédente pour détecter les changements
+        let previousValues = {};
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                clearInterval(interval);
+                timerEl.style.display = 'none';
+                endMessageEl.style.display = 'block';
+                return;
+            }
+
+            let tempDate = new Date(now);
+            let totalMonths = 0;
+            while (tempDate.getFullYear() < targetDate.getFullYear() || tempDate.getMonth() < targetDate.getMonth()) {
+                tempDate.setMonth(tempDate.getMonth() + 1);
+                totalMonths++;
+            }
+            
+            if (tempDate.getDate() > targetDate.getDate()) {
+                totalMonths--;
+                tempDate.setMonth(tempDate.getMonth() - 1);
+            }
+
+            const remainingDiff = targetDate - tempDate;
+            
+            const days = Math.floor(remainingDiff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            const currentValues = {
+                months: totalMonths,
+                days: days,
+                hours: hours,
+                minutes: minutes,
+                seconds: seconds
+            };
+
+            // Fonction pour mettre à jour un élément et ajouter l'animation si la valeur change
+            function updateElement(element, value, pad = false) {
+                const formattedValue = pad ? String(value).padStart(2, '0') : String(value);
+                if (element.innerText !== formattedValue) {
+                    element.innerText = formattedValue;
+                    // Ajoute la classe d'animation, puis la retire pour pouvoir la réutiliser
+                    element.classList.add('animate-pop');
+                    setTimeout(() => {
+                        element.classList.remove('animate-pop');
+                    }, 500); // La durée de l'animation
+                }
+            }
+
+            updateElement(monthsEl, currentValues.months);
+            updateElement(daysEl, currentValues.days);
+            updateElement(hoursEl, currentValues.hours, true);
+            updateElement(minutesEl, currentValues.minutes, true);
+            updateElement(secondsEl, currentValues.seconds, true);
+        }
+
+        updateCountdown(); 
+        const interval = setInterval(updateCountdown, 1000);
+    </script>
+
 </body>
 </html>
