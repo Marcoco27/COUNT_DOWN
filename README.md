@@ -1,184 +1,45 @@
-# COUNT_DOWN
-Voici un README complet et professionnel pour votre projet :
+# ⏳ Compte à Rebours - 15 Juillet 2027
 
-## **README.md**
+Ce projet est une page web simple et élégante affichant un compte à rebours dynamique jusqu'à la date cible du **15 juillet 2027**.
 
-```markdown
-# Compte à Rebours — 15 Juillet 2027
+Le projet a été conçu pour être léger, performant et facile à maintenir en respectant les bonnes pratiques du développement web (séparation du code).
 
-Un compte à rebours minimaliste et élégant jusqu'au 15 juillet 2027, conçu avec une approche épurée et des performances optimales.
+## 🔗 Démo en direct
 
-![Statut](https://img.shields.io/badge/statut-actif-success)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
+Vous pouvez visualiser le site ici :
+👉 **[Insérez votre lien GitHub Pages ici]**
+*(Exemple : https://votre-pseudo.github.io/nom-du-repo/)*
 
----
+## 📂 Structure du Projet
 
-## 🎯 Aperçu
+Le code a été restructuré en trois fichiers distincts pour une meilleure lisibilité et maintenabilité :
 
-Ce projet présente un compteur en temps réel affichant les jours, heures, minutes et secondes restants jusqu'au 15 juillet 2027. L'interface privilégie la clarté, la lisibilité et une expérience utilisateur fluide.
+*   **`index.html`** : Contient la structure sémantique de la page.
+*   **`style.css`** : Gère le design, les dégradés et la mise en page responsive (adaptée aux mobiles).
+*   **`script.js`** : Contient la logique de calcul du temps et la manipulation du DOM.
 
-**Démo en direct** : Ouvrez simplement `index.html` dans votre navigateur.
+## 🚀 Fonctionnalités
 
----
+*   **Affichage complet** : Calcule les Mois, Jours, Heures, Minutes et Secondes restants.
+*   **Responsive Design** : S'affiche parfaitement sur ordinateur, tablette et smartphone grâce à l'utilisation de Flexbox.
+*   **Message de fin** : Affiche automatiquement un message "L'événement est arrivé !" une fois la date atteinte.
+*   **Design moderne** : Utilisation d'effets de transparence (Glassmorphism) et de dégradés.
 
-## ✨ Fonctionnalités
+## 🛠️ Installation et Utilisation locale
 
-- ⏱️ **Précision absolue** : calcul en temps réel avec mise à jour chaque seconde
-- 🎨 **Design épuré** : esthétique minimaliste avec espacement généreux
-- 📱 **100% responsive** : s'adapte à tous les écrans (mobile, tablette, desktop)
-- 🌓 **Mode sombre automatique** : détection des préférences système
-- ♿ **Accessible** : contraste WCAG AAA, support des lecteurs d'écran
-- ⚡ **Performances optimales** : animations GPU, vanilla JavaScript
-- 🔢 **Typographie tabulaire** : chiffres alignés pour une lecture optimale
+Si vous souhaitez tester ou modifier ce projet sur votre ordinateur :
 
----
-
-## 🚀 Installation
-
-Aucune dépendance ni compilation nécessaire. Clonez et lancez :
-
-```bash
-# Cloner le repository
-git clone [votre-repo-url]
-cd countdown-july-2027
-
-# Ouvrir dans le navigateur
-open index.html
-# ou double-cliquez sur le fichier
-```
-
-**Alternative** : hébergez sur GitHub Pages, Netlify, Vercel ou tout serveur statique.
-
----
-
-## 📁 Structure du projet
-
-```
-countdown-july-2027/
-│
-├── index.html          # Structure HTML sémantique
-├── style.css           # Styles et responsive design
-├── script.js           # Logique du compte à rebours
-└── README.md           # Documentation
-```
-
----
-
-## 🛠️ Technologies utilisées
-
-| Technologie | Usage |
-|------------|-------|
-| **HTML5** | Structure sémantique avec attributs ARIA |
-| **CSS3** | Variables custom, flexbox, responsive avec `clamp()` |
-| **JavaScript (ES6+)** | Calculs de temps, manipulations DOM |
-
-**Aucune librairie externe** — code pur et léger (< 5 Ko total).
-
----
+1.  **Clonez le dépôt** :
+    ```bash
+    git clone https://github.com/VOTRE-PSEUDO/NOM-DU-REPO.git
+    ```
+2.  **Ouvrez le fichier** :
+    Double-cliquez simplement sur le fichier `index.html` pour l'ouvrir dans votre navigateur web préféré.
 
 ## ⚙️ Personnalisation
 
-### Changer la date cible
-
-Dans `script.js`, ligne 2 :
+Pour changer la date de fin, ouvrez le fichier `script.js` et modifiez la première ligne :
 
 ```javascript
-const targetDate = new Date('2027-07-15T00:00:00').getTime();
-```
-
-Remplacez par votre date au format ISO 8601.
-
-### Modifier le style
-
-Dans `style.css`, personnalisez les variables CSS :
-
-```css
-:root {
-    --bg-color: #FAFAFA;           /* Couleur de fond */
-    --text-primary: #0A0A0A;       /* Texte principal */
-    --text-secondary: #666666;     /* Labels */
-}
-```
-
-### Ajuster la typographie
-
-Ligne 20 de `style.css`, changez la police :
-
-```css
-font-family: 'Votre Police', -apple-system, sans-serif;
-```
-
----
-
-## 🎨 Design System
-
-**Palette de couleurs** :
-- Fond clair : `#FAFAFA`
-- Fond sombre : `#0A0A0A`
-- Texte primaire : contraste inversé selon le mode
-- Texte secondaire : `#666666` / `#999999`
-
-**Typographie** :
-- Chiffres : police système, poids 300, taille fluide 3.5rem–7rem
-- Labels : uppercase, letterspacing 0.15em, taille 0.75rem–0.95rem
-
-**Espacement** :
-- Gap entre unités : 2rem–4rem (responsive)
-- Padding conteneur : 2rem
-- Gap label/chiffre : 0.5rem
-
----
-
-## 📱 Compatibilité
-
-| Navigateur | Version minimale |
-|-----------|------------------|
-| Chrome | 90+ |
-| Firefox | 88+ |
-| Safari | 14+ |
-| Edge | 90+ |
-
-Testé sur iOS, Android, macOS, Windows et Linux.
-
----
-
-## ♿ Accessibilité
-
-- ✅ Contraste WCAG AAA (ratio > 7:1)
-- ✅ Attribut `aria-live="polite"` pour annonces dynamiques
-- ✅ Taille de police minimum respectée (16px)
-- ✅ Support clavier natif
-- ✅ Détection `prefers-color-scheme` pour le mode sombre
-
----
-
-## 📄 Licence
-
-Ce projet est libre de droits. Utilisez-le, modifiez-le et partagez-le comme bon vous semble.
-
----
-
-## 🤝 Contribution
-
-Les suggestions d'amélioration sont les bienvenues ! N'hésitez pas à :
-
-1. Forker le projet
-2. Créer une branche (`git checkout -b amelioration/nouvelle-feature`)
-3. Committer vos changements (`git commit -m 'Ajout de...'`)
-4. Pusher (`git push origin amelioration/nouvelle-feature`)
-5. Ouvrir une Pull Request
-
----
-
-## 📧 Contact
-
-Pour toute question ou suggestion : [votre@email.com]
-
----
-
-**Fait avec ⏱️ et ☕**
-```
-
-Ce README couvre tous les aspects essentiels : présentation, installation, personnalisation, design system, compatibilité et accessibilité. Il est prêt à être publié sur GitHub ou tout autre repository !
+// Exemple pour changer la date au 1er Janvier 2030
+const targetDate = new Date('January 1, 2030 00:00:00').getTime();
