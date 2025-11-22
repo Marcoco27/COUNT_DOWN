@@ -4,66 +4,194 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compte à Rebours - 15 Juillet 2027</title>
-    <!-- Lien vers le fichier CSS -->
-    <link rel="stylesheet" href="style.css">
-    <!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compte à Rebours - 2027</title>
+
+    <!-- ✅ LE FAVICON (Sablier) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⏳</text></svg>">
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- RESET ET BASE --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Dégradé bleu profond */
+            background: linear-gradient(135deg, #1e3a6e 0%, #162b55 100%);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* --- CONTENEUR --- */
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- LA DATE (TITRE PRINCIPAL) --- */
+        h1 {
+            font-size: 4rem; /* Très grand */
+            font-weight: 800;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #ffffff;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3); /* Ombre portée pour détacher du fond */
+        }
+
+        /* --- GRILLE DU COMPTEUR --- */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .time-box {
+            /* Effet de verre (Glassmorphism) */
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            
+            padding: 30px 20px;
+            border-radius: 20px;
+            min-width: 150px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+            transition: transform 0.3s ease, background 0.3s;
+        }
+
+        .time-box:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .number {
+            display: block;
+            font-size: 4.5rem; /* Chiffres encore plus imposants */
+            font-weight: 700;
+            color: #f1c40f; /* Jaune vif */
+            line-height: 1;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(241, 196, 15, 0.4); /* Lueur jaune */
+            font-variant-numeric: tabular-nums; /* Évite que les chiffres bougent */
+        }
+
+        .label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #dce6f7;
+            font-weight: 500;
+        }
+
+        /* --- RESPONSIVE (MOBILE) --- */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem; /* Ajusté pour mobile */
+                margin-bottom: 30px;
+                letter-spacing: 1px;
+            }
+            
+            .countdown-container {
+                gap: 15px;
+            }
+
+            .time-box {
+                min-width: 100px; /* Un peu plus petit sur mobile */
+                padding: 20px 10px;
+                flex: 1 1 40%; /* Permet d'avoir 2 cases par ligne */
+            }
+
+            .number {
+                font-size: 3rem;
+            }
+
+            .label {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Le reste de ton code HTML reste inchangé -->
+
     <div class="container">
-        <h1>En route vers le<br><span>15 Juillet 2027</span></h1>
-        
-        <div id="countdown" class="countdown">
-            <!-- Les blocs de temps sont générés par JS -->
+        <!-- La date est maintenant le titre principal -->
+        <h1>15 Juillet 2027</h1>
+
+        <div class="countdown-container" id="countdown">
+            <!-- Le JS va remplir ceci -->
         </div>
     </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
-</head>
-<body>
+    <script>
+        // Date cible : 15 Juillet 2027
+        const targetDate = new Date('July 15, 2027 00:00:00');
 
-    <div class="container">
-        <h1>Compte à Rebours Amélioré</h1>
-        <p class="subtitle">Jusqu'au 15 juillet 2027</p>
+        function updateCountdown() {
+            const now = new Date();
+            
+            // Calcul précis
+            let years = targetDate.getFullYear() - now.getFullYear();
+            let months = targetDate.getMonth() - now.getMonth();
+            let days = targetDate.getDate() - now.getDate();
+            let hours = targetDate.getHours() - now.getHours();
+            let minutes = targetDate.getMinutes() - now.getMinutes();
+            let seconds = targetDate.getSeconds() - now.getSeconds();
 
-        <div id="countdown" class="countdown-grid">
-            <div class="time-box">
-                <span id="months">0</span>
-                <span class="label">Mois</span>
-            </div>
-            <div class="time-box">
-                <span id="days">0</span>
-                <span class="label">Jours</span>
-            </div>
-            <div class="time-box">
-                <span id="hours">0</span>
-                <span class="label">Heures</span>
-            </div>
-            <div class="time-box">
-                <span id="minutes">0</span>
-                <span class="label">Minutes</span>
-            </div>
-            <div class="time-box">
-                <span id="seconds">0</span>
-                <span class="label">Secondes</span>
-            </div>
-        </div>
+            // Ajustements temporels
+            if (seconds < 0) { seconds += 60; minutes--; }
+            if (minutes < 0) { minutes += 60; hours--; }
+            if (hours < 0) { hours += 24; days--; }
+            
+            if (days < 0) {
+                const previousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+                days += previousMonth.getDate();
+                months--;
+            }
+            
+            if (months < 0) { months += 12; years--; }
 
-        <div id="message" class="hidden">
-            <h2>L'événement est arrivé !</h2>
-        </div>
-    </div>
+            // Conversion Années -> Mois
+            const totalMonths = (years * 12) + months;
 
-    <!-- Lien vers le fichier JS -->
-    <script src="script.js"></script>
+            // Données
+            const timeUnits = [
+                { value: totalMonths, label: 'Mois' },
+                { value: days, label: 'Jours' },
+                { value: hours, label: 'Heures' },
+                { value: minutes, label: 'Min' },
+                { value: seconds, label: 'Sec' }
+            ];
+
+            const container = document.getElementById('countdown');
+            container.innerHTML = '';
+
+            timeUnits.forEach(unit => {
+                const box = document.createElement('div');
+                box.className = 'time-box';
+                box.innerHTML = `
+                    <span class="number">${unit.value}</span>
+                    <span class="label">${unit.label}</span>
+                `;
+                container.appendChild(box);
+            });
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+
 </body>
 </html>
