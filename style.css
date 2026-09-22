@@ -1,79 +1,225 @@
-/* Reset de base */
+/* ------------------------------------------------------------
+   Compte à rebours · design éditorial
+   Fond papier, chiffres massifs, un seul accent orangé.
+   Le thème sombre se déclenche tout seul si le système le demande.
+   ------------------------------------------------------------ */
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+:root {
+    color-scheme: light dark;
+
+    --bg: #f5f2eb;
+    --ink: #15140f;
+    --muted: #77746b;
+    --rule: rgb(21 20 15 / 16%);
+    --accent: #ff4a1c;
+    --font: "Inter", "SF Pro Display", -apple-system, "BlinkMacSystemFont",
+            "Segoe UI Variable", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #0f0f11;
+        --ink: #f3f0e9;
+        --muted: #8e8b83;
+        --rule: rgb(243 240 233 / 16%);
+        --accent: #ff5f33;
+    }
+}
+
+[hidden] {
+    display: none !important;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     min-height: 100vh;
-    text-align: center;
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    padding: clamp(1.5rem, 4vw, 4rem);
+    background:
+        radial-gradient(60% 45% at 85% 0%, color-mix(in oklab, var(--accent) 10%, transparent), transparent 70%),
+        var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    -webkit-font-smoothing: antialiased;
+    font-variant-numeric: tabular-nums; /* chaque chiffre a la même largeur : rien ne bouge quand ils changent */
 }
 
-.container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-    border-radius: 15px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    max-width: 90%;
-    width: 800px;
+.page {
+    width: min(100%, 1100px);
 }
 
-h1 {
-    margin-bottom: 0.5rem;
-    font-size: 2.5rem;
-}
+/* --- En-tête --- */
 
-.subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.8;
-}
-
-.countdown-grid {
+.eyebrow {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.time-box {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 1rem;
-    border-radius: 10px;
-    min-width: 100px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
 }
 
-.time-box span:first-child {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #ffd700; /* Couleur or pour les chiffres */
+.eyebrow::before {
+    content: "";
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.date {
+    margin-top: 0.75rem;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1;
+}
+
+/* --- Compteur --- */
+
+.countdown {
+    margin-top: clamp(2rem, 6vw, 4rem);
+    border-top: 1px solid var(--rule);
 }
 
 .label {
-    font-size: 0.9rem;
+    display: block;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    margin-top: 5px;
+    color: var(--muted);
 }
 
-.hidden {
-    display: none;
+/* Mois et jours : les deux grands chiffres */
+
+.big {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
-/* Adaptation Mobile */
-@media (max-width: 600px) {
-    h1 { font-size: 1.8rem; }
-    .time-box { min-width: 70px; padding: 0.5rem; }
-    .time-box span:first-child { font-size: 1.5rem; }
-    .label { font-size: 0.7rem; }
+.big .unit {
+    padding: clamp(1.25rem, 3vw, 2.5rem) 0;
+}
+
+.big .unit + .unit {
+    border-left: 1px solid var(--rule);
+    padding-left: clamp(1.25rem, 4vw, 3rem);
+}
+
+.big .value {
+    display: block;
+    font-size: clamp(5rem, 18vw, 13rem);
+    font-weight: 800;
+    letter-spacing: -0.06em;
+    line-height: 0.9;
+}
+
+/* Heures, minutes, secondes : l'horloge */
+
+.clock {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(0.5rem, 2vw, 1.25rem);
+    padding-top: clamp(1.25rem, 3vw, 2rem);
+    border-top: 1px solid var(--rule);
+}
+
+.clock .value {
+    display: block;
+    font-size: clamp(2.2rem, 8vw, 5rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.clock .colon {
+    font-size: clamp(2.2rem, 8vw, 5rem);
+    font-weight: 300;
+    line-height: 1;
+    color: var(--muted);
+    animation: blink 1s steps(2, start) infinite;
+}
+
+#seconds {
+    color: var(--accent);
+}
+
+/* --- Pied --- */
+
+.total {
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
+    font-size: 1rem;
+    color: var(--muted);
+}
+
+.total strong {
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.done {
+    margin-top: clamp(2rem, 6vw, 4rem);
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: var(--accent);
+}
+
+/* --- Mouvements --- */
+
+.tick {
+    animation: tick 0.3s ease-out;
+}
+
+@keyframes tick {
+    from {
+        transform: translateY(0.12em);
+        opacity: 0.4;
+    }
+
+    to {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
+}
+
+@keyframes blink {
+    50% { opacity: 0.25; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .tick,
+    .eyebrow::before,
+    .clock .colon {
+        animation: none;
+    }
+}
+
+/* --- Petit écran --- */
+
+@media (width <= 600px) {
+    /* Les libellés sont plus larges que les chiffres ; répartir les trois
+       unités sur toute la largeur rend les écarts égaux autour des deux-points. */
+    .clock {
+        justify-content: space-between;
+        gap: 0.25rem;
+    }
 }
