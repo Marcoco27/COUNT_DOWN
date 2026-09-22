@@ -1,6 +1,6 @@
-# ⏳ Compte à Rebours - 15 Juillet 2027
+# ⏳ Compte à Rebours - 15 Juillet 2028
 
-Ce projet est une page web simple et élégante affichant un compte à rebours dynamique jusqu'à la date cible du **15 juillet 2027**.
+Ce projet est une page web simple et élégante affichant un compte à rebours dynamique jusqu'à la date cible du **15 juillet 2028**.
 
 Le projet a été conçu pour être léger, performant et facile à maintenir en respectant les bonnes pratiques du développement web (séparation du code).
 

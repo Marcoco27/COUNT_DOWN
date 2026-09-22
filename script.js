@@ -1,5 +1,5 @@
-// Date cible : 15 Juillet 2027
-const targetDate = new Date('July 15, 2027 00:00:00').getTime();
+// Date cible : 15 Juillet 2028
+const targetDate = new Date('July 15, 2028 00:00:00').getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
